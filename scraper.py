@@ -28,12 +28,13 @@ class Scraper:
         time.sleep(0.5)
         self.driver.find_element(By.XPATH, '//*[@id="main-content"]/section[1]/div/div/form/div[2]/button').click()
         time.sleep(3)
-        try:
-            self.driver.find_element(By.ID, 'captchaInternalPath')
-            print('Solve Captcha')
-            time.sleep(10)
-        except:
-            time.sleep(1)
+        loaded = False
+        while loaded == False:
+            if 'https://www.linkedin.com/feed/' not in self.driver.current_url:
+                print('Verification required')
+                time.sleep(10)
+            else:
+                loaded = True
     
     def switch_accounts_for_commenting(self, new_account):
         self.driver.find_elements(By.CLASS_NAME, )
