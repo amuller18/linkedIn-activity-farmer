@@ -8,3 +8,4 @@ data = pd.read_csv(file_path)
 texts = data['Post Text']
 embeddings = [analyzer.get_embedding(text) for text in texts]
 reduced_embeddings = analyzer.reduce(embeddings)
+analyzer.graph(reduced_embeddings)

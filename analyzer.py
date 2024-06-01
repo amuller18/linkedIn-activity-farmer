@@ -83,16 +83,16 @@ class Analyzer:
         })
         return answer.content
     
-    def graph(self, reduced_data, reduced_averages):
-        avg_x = [float(i[0]) for i in reduced_averages]
-        avg_y = [float(i[1]) for i in reduced_averages] 
+    def graph(self, reduced_data):
+        #avg_x = [float(i[0]) for i in reduced_averages]
+        #avg_y = [float(i[1]) for i in reduced_averages] 
         x = [float(i[0]) for i in reduced_data]
         y = [float(i[1]) for i in reduced_data]
 
         fig, ax = plt.subplots()
 
         sc = ax.scatter(x, y, cmap='viridis', marker="o")
-        ax.plot(avg_x, avg_y, linestyle="None", marker = 'o', color='red')
+        #ax.plot(avg_x, avg_y, linestyle="None", marker = 'o', color='red')
         cbar = plt.colorbar(sc)
 
         ax.set_xlabel("X")
