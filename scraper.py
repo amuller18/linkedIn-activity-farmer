@@ -87,7 +87,9 @@ class Scraper:
         elements = self.driver.find_elements(By.TAG_NAME, 'button')
         for element in elements:
             if element.text == 'Post':
-                element.get_attribute('id')
+                account_switch = post.find_next('div', class_ = 'feed-shared-social-action-bar__action-button')
+                self.driver.find_element(By.ID, account_switch.get('id')).click()
+                print(account_switch.get('aria-label'))
                 self.driver.find_element(By.ID, element.get_attribute('id')).click()
 
         print('Commented on post')

@@ -10,10 +10,11 @@ scraper = Scraper()
 scraper.log_in(user, password)
 scraper.browse_feed()
 scraper.quit_driver()
+
 '''
 
 trainer = Trainer()
 trainer.log_in(user, password)
 trainer.get_samples()
 trainer.quit_driver()
-
+'''
