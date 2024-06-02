@@ -11,7 +11,7 @@ from training_data import X, Y
 
 class Scraper:
     def __init__(self):
-        self.driver = uc.Chrome()
+        self.driver = uc.Chrome(driver_executable_path='chromedriver.exe')
         self.wait = WebDriverWait(self.driver, 10)
         self.analyzer = Analyzer()
         self.group_data, self.df = self.analyzer.train(X, Y)        
@@ -21,7 +21,7 @@ class Scraper:
 
     def log_in(self, username, password):
         self.driver.get('https://www.linkedin.com/home')
-        time.sleep(2)
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'session_key')))
         self.driver.find_element(By.ID, 'session_key').send_keys(username)
         time.sleep(0.5)
         self.driver.find_element(By.ID, 'session_password').send_keys(password)
@@ -88,6 +88,7 @@ class Scraper:
         for element in elements:
             if element.text == 'Post':
                 account_switch = post.find_next('div', class_ = 'feed-shared-social-action-bar__action-button')
+                print(account_switch)
                 self.driver.find_element(By.ID, account_switch.get('id')).click()
                 print(account_switch.get('aria-label'))
                 self.driver.find_element(By.ID, element.get_attribute('id')).click()
